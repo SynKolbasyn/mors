@@ -31,11 +31,11 @@ class Character():
     #     return Character(self.name, self.login, self.password, self.nickName, self.helthPoints, self.damage, self.money)
 
     def getAccInfo(self):
-        print("\nВы успешно создали аккаунт и персонажа:\nДанные аккаунта:\n\tЛогин:", self.login + "\n\tПароль:",
-              self.password + "\n\nОбязательно запомните их, иначе вы можете потеряете доступ к своему аккаунту")
+        print("\nВы успешно создали аккаунт и персонажа:\n\nДанные аккаунта:\n\tЛогин:", self.login + "\n\tПароль:",
+              self.password + "\nОбязательно запомните их, иначе вы можете потеряете доступ к своему аккаунту")
 
-    def getCharInfo(self,):
-        print("Игровые данные:\n\tНик:", self.nickName + "\n\tРасса:",
+    def getCharInfo(self, ):
+        print("\nИгровые данные:\n\tНик:", self.nickName + "\n\tРасса:",
               self.rassInfo() + "\n\tЗдоровье:", self.helthPoints + "\n\tУрон:", self.damage + "\n\tБаланс кошелька:",
               self.money)
 
@@ -62,7 +62,3 @@ class Human(Character):
 
     def rassInfo(self):
         return "Человек"
-
-# b = Elf("a", "b", "b", "b", "b", "b", "b")
-# a = Elf("a", "b", "b", "b", "b", "b", "b")
-# print(b)
