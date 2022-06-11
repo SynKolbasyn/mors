@@ -79,6 +79,7 @@ def register():
         else:
             print("Расса выбрана неправильно, попробуйте ещё раз")
             print("\n" + 100 * "#" + "\n")
+    print("\n" + 100 * "#" + "\n")
     dataPath.saveA(players[-1].encode())
     players[-1].getAccInfo()
     players[-1].getCharInfo()
@@ -108,16 +109,9 @@ def login():
     ok = 0
     while ok != 1:
         playerPassword = input("Введите пароль: ")
-        file = open(dataPath.getDataPath(), 'r')
-        ta = []
         passwordStatus = 0
-        for line in file:
-            ta = line.split("\t")
-            if playerPassword == ta[2]:
-                passwordStatus = 1
-                break
-        file.close()
-        if passwordStatus == 1:
+        if playerPassword == ta[2]:
+            passwordStatus = 1
             ok = 1
             print("Вы успешно вошли в аккаунт")
         else:
