@@ -12,6 +12,10 @@ moneyConst = "500"
 damageConst = "5"
 helthPointsConst = "100"
 
+dataPath = SaveLoad("data/gameData.txt")
+
+players = []
+
 
 def register():
     loginStatus = 0
