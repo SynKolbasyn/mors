@@ -20,6 +20,7 @@ players = []
 def register():
     loginStatus = 0
     passwordStatus = 0
+    ingress = 0
     playerName = input("Введите своё настоящее имя: ")
     ok = 0
     while ok != 1:
@@ -81,14 +82,16 @@ def register():
             print("\n" + 100 * "#" + "\n")
     print("\n" + 100 * "#" + "\n")
     dataPath.saveA(players[-1].encode())
+    print("\nВы успешно создали аккаунт и персонажа:\n")
     players[-1].getAccInfo()
     players[-1].getCharInfo()
     print("\n" + 100 * "#" + "\n")
 
 
-def login():
+def login(ingress):
     loginStatus = 0
     passwordStatus = 0
+    ingress = 0
     ok = 0
     while ok != 1:
         playerLogin = input("Введите логин: ")
@@ -118,8 +121,64 @@ def login():
             print("Неверный пароль, попробуйте ещё раз")
             print("\n" + 100 * "#" + "\n")
     print("\n" + 100 * "#" + "\n")
+    if ta[7].lower().strip() == "elf":
+        return Elf(ta[0].strip(),
+                   ta[1].strip(),
+                   ta[2].strip(),
+                   ta[3].strip(),
+                   ta[4].strip(),
+                   ta[5].strip(),
+                   ta[6].strip())
+
+    elif ta[7].lower().strip() == "orc":
+        return Orc(ta[0].strip(),
+                   ta[1].strip(),
+                   ta[2].strip(),
+                   ta[3].strip(),
+                   ta[4].strip(),
+                   ta[5].strip(),
+                   ta[6].strip())
+    else:
+        return Human(ta[0].strip(),
+                     ta[1].strip(),
+                     ta[2].strip(),
+                     ta[3].strip(),
+                     ta[4].strip(),
+                     ta[5].strip(),
+                     ta[6].strip())
+
+
+def info(playerID):
+    try:
+        playerID.getAccInfo()
+        playerID.getCharInfo()
+    except AttributeError:
+        print("Вы не вошли в аккаунт")
+    print("\n" + 100 * "#" + "\n")
+
+
+def logout(ingress):
+    if ingress == 1:
+        loginStatus = 0
+        passwordStatus = 0
+        ingress = 0
+        print("Вы успешно вышли из аккаунта")
+    else:
+        print("Вы не можете выйти из аккаунта не войдя в него,\nдля начала следует в него войти")
+    print("\n" + 100 * "#" + "\n")
+    return ingress
 
 
 def unknown():
-    print("Неизвестное действие")
+    print("Неизвестное действие\nДоступны следующие действия:"
+          "\n\tregister - чтобы зарегестрировать новый аккаунт и персонажа"
+          "\n\tlogin    - чтобы войти в уже созданный аккаунт"
+          "\n\tlogout   - чтобы выйти из аккаунта"
+          "\n\tinfo     - чтобы узнать информацию об аккаунте и персонаже"
+          "\n\texit     - чтобы завершить программу")
     print("\n" + 100 * "#" + "\n")
+
+
+def exit():
+    print("Программа завершена")
+    print("\n" + 100 * "#")

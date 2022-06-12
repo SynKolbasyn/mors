@@ -21,13 +21,30 @@ class SaveLoad():
         for line in file:
             ta = []
             ta = line.split("\t")
-            a.append(Character(ta[0].strip(),
+            if ta[7].lower() == "elf":
+                a.append(Elf(ta[0].strip(),
                                ta[1].strip(),
                                ta[2].strip(),
                                ta[3].strip(),
                                ta[4].strip(),
                                ta[5].strip(),
                                ta[6].strip()))
+            elif ta[7].lower() == "orc":
+                a.append(Orc(ta[0].strip(),
+                             ta[1].strip(),
+                             ta[2].strip(),
+                             ta[3].strip(),
+                             ta[4].strip(),
+                             ta[5].strip(),
+                             ta[6].strip()))
+            else:
+                a.append(Human(ta[0].strip(),
+                             ta[1].strip(),
+                             ta[2].strip(),
+                             ta[3].strip(),
+                             ta[4].strip(),
+                             ta[5].strip(),
+                             ta[6].strip()))
         file.close()
         return a
 

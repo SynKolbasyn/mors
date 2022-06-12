@@ -15,7 +15,8 @@ class Character():
                self.nickName + "\t" + \
                self.helthPoints + "\t" + \
                self.damage + "\t" + \
-               self.money + "\n"
+               self.money + "\t" + \
+               self.rassInfo() + "\n"
         return data
 
     # def decode(self, line):
@@ -31,34 +32,32 @@ class Character():
     #     return Character(self.name, self.login, self.password, self.nickName, self.helthPoints, self.damage, self.money)
 
     def getAccInfo(self):
-        print("\nВы успешно создали аккаунт и персонажа:\n\nДанные аккаунта:\n\tЛогин:", self.login + "\n\tПароль:",
+        print("Данные аккаунта:\n\tЛогин:", self.login + "\n\tПароль:",
               self.password + "\nОбязательно запомните их, иначе вы можете потеряете доступ к своему аккаунту")
 
-    def getCharInfo(self, ):
+    def getCharInfo(self):
         print("\nИгровые данные:\n\tНик:", self.nickName + "\n\tРасса:",
-              self.rassInfo() + "\n\tЗдоровье:", self.helthPoints + "\n\tУрон:", self.damage + "\n\tБаланс кошелька:",
+              self.rassInfo + "\n\tЗдоровье:", self.helthPoints + "\n\tУрон:", self.damage + "\n\tБаланс кошелька:",
               self.money)
+
+    def rassInfo(self):
+        return self.rassInfo
 
 
 class Elf(Character):
     def __init__(self, name, login, password, nickName, helthPoints, damage, money):
         super().__init__(name, login, password, nickName, helthPoints, damage, money)
+        self.rassInfo = "Elf"
 
-    def rassInfo(self):
-        return "Эльф"
 
 
 class Orc(Character):
     def __init__(self, name, login, password, nickName, helthPoints, damage, money):
         super().__init__(name, login, password, nickName, helthPoints, damage, money)
-
-    def rassInfo(self):
-        return "Орк"
-
+        self.rassInfo = "Orc"
 
 class Human(Character):
     def __init__(self, name, login, password, nickName, helthPoints, damage, money):
         super().__init__(name, login, password, nickName, helthPoints, damage, money)
+        self.rassInfo = "Human"
 
-    def rassInfo(self):
-        return "Человек"
