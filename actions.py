@@ -1,9 +1,11 @@
 from saveLoad import *
 from character import *
 
+playerName = ""
 playerID = ""
 playerLogin = ""
 playerPassword = ""
+playerNickName = ""
 ingress = 0
 loginStatus = 0
 passwordStatus = 0
@@ -17,14 +19,70 @@ dataPath = SaveLoad("data/gameData.txt")
 players = []
 
 
+def langTest(word):
+    check  = 0
+    for i in range(len(word)):
+        if word[i].lower() == '\u0430' or \
+           word[i].lower() == '\u0431' or \
+           word[i].lower() == '\u0432' or \
+           word[i].lower() == '\u0433' or \
+           word[i].lower() == '\u0434' or \
+           word[i].lower() == '\u0435' or \
+           word[i].lower() == '\u0451' or \
+           word[i].lower() == '\u0436' or \
+           word[i].lower() == '\u0437' or \
+           word[i].lower() == '\u0438' or \
+           word[i].lower() == '\u0439' or \
+           word[i].lower() == '\u043a' or \
+           word[i].lower() == '\u043b' or \
+           word[i].lower() == '\u043c' or \
+           word[i].lower() == '\u043d' or \
+           word[i].lower() == '\u043e' or \
+           word[i].lower() == '\u043f' or \
+           word[i].lower() == '\u0440' or \
+           word[i].lower() == '\u0441' or \
+           word[i].lower() == '\u0442' or \
+           word[i].lower() == '\u0443' or \
+           word[i].lower() == '\u0444' or \
+           word[i].lower() == '\u0445' or \
+           word[i].lower() == '\u0446' or \
+           word[i].lower() == '\u0447' or \
+           word[i].lower() == '\u0448' or \
+           word[i].lower() == '\u0449' or \
+           word[i].lower() == '\u044a' or \
+           word[i].lower() == '\u044b' or \
+           word[i].lower() == '\u044c' or \
+           word[i].lower() == '\u044d' or \
+           word[i].lower() == '\u044e' or \
+           word[i].lower() == '\u044f' or \
+           word[i] == " ":
+            check = check + 1
+    if check == 0 and word != "":
+        return 1
+    else:
+        return 0
+
+
 def register():
     loginStatus = 0
     passwordStatus = 0
     ingress = 0
-    playerName = input("Введите своё настоящее имя: ")
     ok = 0
     while ok != 1:
-        playerLogin = input("Придумайте логин: ")
+        playerName = input("Введите своё настоящее имя: ")
+        ok = langTest(playerName)
+        if ok != 1:
+            print("Ошибка, введите имя на Английском языке и без пробелов")
+            print("\n" + 100 * "#" + "\n")
+    ok = 0
+    while ok != 1:
+        T = 0
+        while T != 1:
+            playerLogin = input("Придумайте логин: ")
+            T = langTest(playerLogin)
+            if T != 1:
+                print("Ошибка, введите логин на Английском языке и без пробелов")
+                print("\n" + 100 * "#" + "\n")
         ta = []
         count = 0
         file = open(dataPath.getDataPath(), 'r')
@@ -38,10 +96,22 @@ def register():
         else:
             print("Введённый логин уже занят, придумайте другой")
             print("\n" + 100 * "#" + "\n")
-    playerPassword = input("Придумайте пароль: ")
     ok = 0
     while ok != 1:
-        playerNickName = input("Введите игровой ник нейм: ")
+        playerPassword = input("Придумайте пароль: ")
+        ok = langTest(playerPassword)
+        if ok != 1:
+            print("Ошибка, введите пароль на Английском языке и без пробелов")
+            print("\n" + 100 * "#" + "\n")
+    ok = 0
+    while ok != 1:
+        T = 0
+        while T != 1:
+            playerNickName = input("Введите игровой ник нейм: ")
+            T = langTest(playerNickName)
+            if T != 1:
+                print("Ошибка, введите ник на Английском языке и без пробелов")
+                print("\n" + 100 * "#" + "\n")
         ta = []
         count = 0
         file = open(dataPath.getDataPath(), 'r')
@@ -59,19 +129,19 @@ def register():
     while ok != 1:
         playerRass = input(
             "Выберите одну из следующих расс:\n\t1.Эльф\n\t2.Орк\n\t3.Человек\nВведите цифру выбранной рассы: ")
-        if playerRass == "1" or playerRass.lower() == "эльф":
+        if playerRass == "1" or playerRass.lower() == "эльф" or playerRass.lower() == "elf":
             players.append(
                 Elf(playerName, playerLogin, playerPassword, playerNickName, helthPointsConst,
                     damageConst,
                     moneyConst))
             ok = 1
-        elif playerRass == "2" or playerRass.lower() == "орк":
+        elif playerRass == "2" or playerRass.lower() == "орк" or playerRass.lower() == "orc":
             players.append(
                 Orc(playerName, playerLogin, playerPassword, playerNickName, helthPointsConst,
                     damageConst,
                     moneyConst))
             ok = 1
-        elif playerRass == "3" or playerRass.lower() == "человек":
+        elif playerRass == "3" or playerRass.lower() == "человек" or playerRass.lower() == "human":
             players.append(
                 Human(playerName, playerLogin, playerPassword, playerNickName, helthPointsConst,
                       damageConst,

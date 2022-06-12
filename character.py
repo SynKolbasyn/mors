@@ -37,27 +37,26 @@ class Character():
 
     def getCharInfo(self):
         print("\nИгровые данные:\n\tНик:", self.nickName + "\n\tРасса:",
-              self.rassInfo + "\n\tЗдоровье:", self.helthPoints + "\n\tУрон:", self.damage + "\n\tБаланс кошелька:",
+              self.rass + "\n\tЗдоровье:", self.helthPoints + "\n\tУрон:", self.damage + "\n\tБаланс кошелька:",
               self.money)
 
     def rassInfo(self):
-        return self.rassInfo
+        return self.rass
 
 
 class Elf(Character):
     def __init__(self, name, login, password, nickName, helthPoints, damage, money):
         super().__init__(name, login, password, nickName, helthPoints, damage, money)
-        self.rassInfo = "Elf"
-
+        self.rass = "Elf"
 
 
 class Orc(Character):
     def __init__(self, name, login, password, nickName, helthPoints, damage, money):
         super().__init__(name, login, password, nickName, helthPoints, damage, money)
-        self.rassInfo = "Orc"
+        self.rass = "Orc"
+
 
 class Human(Character):
     def __init__(self, name, login, password, nickName, helthPoints, damage, money):
         super().__init__(name, login, password, nickName, helthPoints, damage, money)
-        self.rassInfo = "Human"
-
+        self.rass = "Human"
